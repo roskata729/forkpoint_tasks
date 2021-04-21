@@ -1,0 +1,16 @@
+#stockTable, .alignedLeft, tr, th, td{
+    border: 2px solid;
+    border-collapse: collapse;
+  }
+#stockTable{
+    text-align: center;
+    width: 90%;
+    align-self: center;
+}
+  .alignedLeft{
+    text-align: left;
+}
+th,td{
+    padding: 15px;
+}
+
