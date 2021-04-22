@@ -1,0 +1,26 @@
+
+.div-container > div{
+    text-align: center;
+    font-size: 30px;
+    padding: 25px;
+    margin-left: 10px;
+    display: inline-block;
+}
+.first{
+    background-color:red;
+}
+.second{
+    background-color:blue;
+}
+.third{
+    background-color:green;
+}
+.fourth{
+    background-color:rgb(138, 27, 104);
+}
+.fifth{
+    background-color:rgb(185, 168, 14);
+}
+.sixth{
+    background-color:rgb(44, 204, 209);
+}
