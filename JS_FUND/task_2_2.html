@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>About Me</title>
+</head>
+<body>
+  <h1>My Book List</h1>
+  <ul id = "myBookList">
+
+  </ul>
+
+
+ </body>
+</html>
+<script>
+        var Books = [
+            {   name:'Book1',
+                author: 'author1',
+                hasRead: false,
+            },
+            {   name:'Book2',
+                author: 'author2',
+                hasRead: true,
+            },
+            {   name:'Book3',
+                author: 'author3',
+                hasRead: true,},
+            {   name:'Book4',
+                author: 'author4',
+                hasRead: false,
+            },
+            {   name:'Book5',
+                author: 'author5',
+                hasRead: true,
+            },
+            {   name:'Book6',
+                author: 'author6',
+                hasRead: false,
+            },
+        ];
+
+
+        for (var book of Books){
+            var myList = document.getElementById('myBookList');
+            var bookElement = document.createElement('li');
+            var pBook = document.createElement('p');
+            bookElement.setAttribute('class','book');
+            pBook.innerText = "\nName: " + book.name + 
+            "\nAuthor: " + book.author;
+            myList.appendChild(bookElement);
+            bookElement.appendChild(pBook);
+            if(book.hasRead)bookElement.style.color = 'red';
+        }
+
+</script>
