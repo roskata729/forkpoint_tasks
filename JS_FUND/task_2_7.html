@@ -1,0 +1,33 @@
+<!--
+    7.	Write a JavaScript program to get the width and height of the window 
+    (any time the window is resized).
+-->
+<!DOCTYPE html>
+<html><head>
+<meta charset=utf-8 />
+<title>Get Window Size</title>
+</head>
+<body>
+        <h1>Window size</h1>
+        <h3 id="height">Height: </h3>
+        <h3 id="width">Width: </h3>
+    
+
+<script>
+        var h3Height = document.getElementById("height").innerText;
+        var h3Width = document.getElementById("width").innerText;
+
+        function writeWindowSize(){
+            document.getElementById("height").innerText = h3Height + window.innerHeight;
+            document.getElementById("width").innerText = h3Width + window.innerWidth;
+        }
+
+        writeWindowSize();
+        window.addEventListener('resize',writeWindowSize);
+
+        
+
+</script>
+
+</body>
+</html>
