@@ -1,0 +1,38 @@
+<!--
+    6.	Write a JavaScript program to highlight the bold words of the following paragraph,
+        on mouse over a certain link. 
+-->
+<!DOCTYPE html>
+<html><head>
+<meta charset=utf-8 />
+<title>Highlight bold words</title>
+</head>
+<body>
+
+    <p><a href="#" onMouseOver="highlightBoldWords()" onMouseOut="removeHighlight()">
+        On mouse over here bold words of the following paragraph will be highlighted</a></p>
+<p id="myText">
+    <strong>We</strong> have just started this <strong>section for the users</strong> (beginner to intermediate) 
+    who want to work with various <strong>JavaScript problems and 
+    write</strong> scripts online to test their <strong>JavaScript</strong> skill.
+</p>
+
+<script>
+    var boldWords;
+
+    boldWords = document.getElementById('myText').getElementsByTagName('strong');
+    
+    function highlightBoldWords(){
+        for(var word of boldWords){
+            word.style.color = "green";
+        }
+    }
+    function removeHighlight(){
+        for(var word of boldWords){
+            word.style.color = "black";
+        }
+    }
+</script>
+
+</body>
+</html>
