@@ -1,5 +1,6 @@
 class Item {
 
+    
     static countOfObjects = 0;
     #name = '';
     #id;

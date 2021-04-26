@@ -1,6 +1,6 @@
 const allDamageTypes = ['psysical','poison','fire', 'water', 'air', 'earth'];
 class Weapon extends Item {
-    
+     
     #attack;
     #twoHanded;
     #damageType;
