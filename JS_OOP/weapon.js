@@ -10,7 +10,6 @@ class Weapon extends Item {
         this.attack = attack;
         this.damageType = damageType;
         this.twoHanded = twoHanded;
-        this.checkRequirements();
     }
 
     checkRequirements(){

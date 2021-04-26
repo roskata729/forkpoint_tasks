@@ -13,11 +13,6 @@ class Item {
         return 'Item ${this.id} - ${this.name}';
     }
 
-    set name(name){
-        this.name = name;
-    }
-    get name(){
-        return this.name;
-    }
+    
 
 }
