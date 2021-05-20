@@ -17,7 +17,7 @@ class Bow extends Weapon{
     }
 
     getItemInfo(){
-        return '${super.getItemInfo()} and has ${[pierce() ? 50 : 0]} chance to apply pierce and ${[critical() ? 50 : 0]} chance to apply critical';
+        return `${super.getItemInfo()} and has ${[pierce() ? 50 : 0]} chance to apply pierce and ${[critical() ? 50 : 0]} chance to apply critical`;
     }
 
     get arrowType(){

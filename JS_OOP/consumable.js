@@ -1,4 +1,10 @@
+//imports
+const Item = require('./item').Item;
+const getRandomNumber = require('./item').getRandomNumber;
+const allDamageTypes = require('./item').allDamageTypes;
+
 const typeOfConsumable = ['minor', 'medium', 'big'];
+
 class Consumable extends Item{
 
     #heals;
@@ -9,7 +15,7 @@ class Consumable extends Item{
         super(name);
         this.#heals = heals;
         this.#type = type;
-        this.effect();
+        this.setEffectLogic();
     }
 
     checkRequirements(){
@@ -18,17 +24,24 @@ class Consumable extends Item{
         if(!typeOfConsumable.includes(this.type)) throw 'Invalid type of consumable';
     }
 
-    get effect(){
-        return this.#effect;
+    getItemInfo(){
+        return `${super.getItemInfo()} - it is a ${this.type} potion and ${this.heals ? 'heals' : 'damages'} for ${this.effect}`;
     }
-    set effect(){
 
+    setEffectLogic () {
         if(this.type == 'minor') 
             this.#effect = getRandomNumber(1,10);
         else if(this.type == 'medium') 
             this.#effect = getRandomNumber(11,20);
         else if(this.type == 'big') 
             this.#effect = getRandomNumber(21,30);
+    }
+
+    get effect(){
+        return this.#effect;
+    }
+    set effect(effect){
+        this.#effect = effect;
     }
 
     set heals(heals){
@@ -45,3 +58,6 @@ class Consumable extends Item{
     }
 
 }
+module.exports = {Consumable, typeOfConsumable};
+let myFirstItem = new Consumable('myFirstConsumable', false, 'big');
+console.log(myFirstItem.getItemInfo());

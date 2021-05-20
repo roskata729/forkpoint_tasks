@@ -1,3 +1,7 @@
+//imports
+const Item = require('./item').Item;
+//const getRandomNumber = require('./item').getRandomNumber;
+const allDamageTypes = require('./item').allDamageTypes;
 
 class Weapon extends Item {
      
@@ -20,7 +24,7 @@ class Weapon extends Item {
     }
 
     getItemInfo(){
-        return '${super.getItemInfo()} has ${this.attack} of ${this.damagetype}';
+        return `${super.getItemInfo()} has ${this.attack} of ${this.damageType}`;
     }
 
     set attack(attack){
@@ -43,6 +47,8 @@ class Weapon extends Item {
     get damageType(){
         return this.#damageType;
     }
-
-
 }
+module.exports = {Weapon};
+
+let myFirstWeapon = new Weapon('myFirstWeapon', 18000, 'fire', false);
+console.log(myFirstWeapon.getItemInfo());

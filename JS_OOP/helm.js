@@ -1,3 +1,4 @@
+const Armor = require('./armor').Armor;
 class Helm extends Armor{
 
     #attractiveness;
@@ -9,12 +10,12 @@ class Helm extends Armor{
 
     checkRequirements(){
         super.checkRequirements();
-        if(this.attractiveness < -5 || this.attractiveness > 5) 
+        if(this.attractiveness > -5 || this.attractiveness < 5) 
             throw 'Invalid attractiveness'; 
     }
 
     getItemInfo(){
-        return '${super.getItemInfo()} and adds ${this.attractiveness} attractiveness ';
+        return `${super.getItemInfo()} and adds ${this.attractiveness} attractiveness `;
     }
 
     get attractiveness(){
@@ -24,3 +25,5 @@ class Helm extends Armor{
         this.#attractiveness = attractiveness;
     }
 }
+let myFirstItem = new Helm('myFirstGloves', 25000, 'fire', 4);
+console.log(myFirstItem.getItemInfo());

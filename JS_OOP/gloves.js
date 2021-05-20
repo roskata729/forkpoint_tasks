@@ -1,3 +1,4 @@
+const Armor = require('./armor').Armor;
 class Gloves extends Armor{
 
     #crafting;
@@ -14,7 +15,7 @@ class Gloves extends Armor{
     }
 
     getItemInfo(){
-        return '${super.getItemInfo()} and adds ${this.crafting} crafting ';
+        return `${super.getItemInfo()} and adds ${this.crafting} crafting `;
     }
 
     get crafting(){
@@ -25,3 +26,5 @@ class Gloves extends Armor{
     }
 
 }
+let myFirstitem = new Gloves('myFirstGloves', 25000, 'fire', 9);
+console.log(myFirstitem.getItemInfo());

@@ -1,3 +1,7 @@
+const Item = require('./item').Item;
+const getRandomNumber = require('./item').getRandomNumber;
+const allDamageTypes = require('./item').allDamageTypes;
+
 class Armor extends Item {
 
     #defense;
@@ -6,8 +10,8 @@ class Armor extends Item {
 
     constructor(name, defense, resistance){
         super(name);
-        this.defense = defense;
-        this.resistance = resistance;
+        this.#defense = defense;
+        this.#resistance = resistance;
     }
 
     checkRequirements(){
@@ -17,7 +21,7 @@ class Armor extends Item {
     }
 
     getItemInfo(){
-        return '${super.getItemInfo()} has ${this.defence} and ${chance}% resistance'; 
+        return `${super.getItemInfo()} has ${this.defense} defense and ${this.#chance}% resistance`;
     }
 
     get defense(){
@@ -32,6 +36,8 @@ class Armor extends Item {
     set resistance(resistance) {
         this.#resistance = resistance;
     }
-
-
 }
+module.exports = {Armor};
+
+let myFirstItem = new Armor ("myFirstitem", 20000, "fire");
+console.log(myFirstItem.getItemInfo());

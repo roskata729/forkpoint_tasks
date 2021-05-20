@@ -1,3 +1,4 @@
+const Armor = require('./armor').Armor;
 class Robe extends Armor{
     #reputation;
 
@@ -13,7 +14,7 @@ class Robe extends Armor{
     }
 
     getItemInfo(){
-        return '${super.getItemInfo()} and adds ${this.reputation} reputation ';
+        return `${super.getItemInfo()} and adds ${this.reputation} reputation `;
     }
 
     get reputation(){
@@ -23,3 +24,5 @@ class Robe extends Armor{
         this.#reputation = reputation;
     }
 }
+let myFirstitem = new Robe('myFirstRobe', 32000, 'fire', 7);
+console.log(myFirstitem.getItemInfo());

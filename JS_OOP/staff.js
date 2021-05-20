@@ -1,21 +1,20 @@
+const Weapon = require('./weapon').Weapon;
+const allDamageTypes = require('./item').allDamageTypes;
 class Staff extends Weapon{
 
 
-    #burn = damageType === 'fire' ? true : false;
-    #poison = damageType === 'poison' ? true : false;
-    #cold = damageType === 'water' ? true : false;
-    #electrify = damageType === 'air' ? true : false;
-    #tremor = damageType === 'earth' ? true : false;
+    #burn = super.damageType === 'fire' ? true : false;
+    #poison = super.damageType === 'poison' ? true : false;
+    #cold = super.damageType === 'water' ? true : false;
+    #electrify = super.damageType === 'air' ? true : false;
+    #tremor = super.damageType === 'earth' ? true : false;
 
 
     constructor(name,attack, damageType){
         super(name,attack, damageType, true);
     }
     getItemInfo(){
-        var returnActionArray = [burn, poison, cold, electrify, tremor];
-        var returnAction = returnActionArray.includes(true);
-        return '${super.getItemInfo()} has ${this.attack} of ${this.damagetype}'
-        + ' and has 50% chance to apply ${returnAction}';
+        return `${super.getItemInfo()} and has 50% chance to apply ${super.damageType}`;
     }
     checkRequirements(){
         super.checkRequirements();
@@ -53,6 +52,6 @@ class Staff extends Weapon{
     set tremor(tremor){
         this.#tremor = tremor;
     }
-
-
 }
+let myFirstitem = new Staff('myFirstStaff', 15750, 'earth');
+console.log(myFirstitem.getItemInfo());

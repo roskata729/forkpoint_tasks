@@ -3,7 +3,7 @@ function getRandomNumber(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-static const allDamageTypes = ['psysical', 'poison', 'fire', 'water', 'air', 'earth'];
+const allDamageTypes = ['psysical', 'poison', 'fire', 'water', 'air', 'earth'];
 class Item {
 
     static countOfObjects = 0;
@@ -12,16 +12,25 @@ class Item {
 
     constructor (name){
         this.#name = name;
-        id = ++countOfObjects;
+        this.#id = ++Item.countOfObjects;
     }
 
     getItemInfo(){
-        return 'Item ${this.id} - ${this.name}';
+        return `Item ${this.#id} - ${this.name}`;
     }
     checkRequirements(){
-        return typeof(name) == 'string';
+        return typeof(this.#name) == 'string';
     }
 
-    
+    set name(name){
+        this.name = name;
+    }
+    get name(){
+        return this.#name;
+    }
 
 }
+module.exports = {Item, getRandomNumber, allDamageTypes};
+
+let myFirstItem = new Item("firstItem");
+console.log(myFirstItem.getItemInfo());

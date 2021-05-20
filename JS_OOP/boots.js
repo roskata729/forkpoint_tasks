@@ -1,3 +1,4 @@
+const Armor = require('./armor').Armor;
 class Boots extends Armor{
 
     #speed;
@@ -14,7 +15,7 @@ class Boots extends Armor{
     }
 
     getItemInfo(){
-        return '${super.getItemInfo()} and adds ${this.speed} speed ';
+        return `${super.getItemInfo()} and adds ${this.speed} speed `;
     }
 
     get speed(){
@@ -24,3 +25,5 @@ class Boots extends Armor{
         this.#speed = speed;
     }
 }
+let myFirstItem = new Boots('myFirstBoots', 25000, 'fire', 11);
+console.log(myFirstItem.getItemInfo());
