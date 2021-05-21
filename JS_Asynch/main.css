@@ -1,0 +1,50 @@
+#div-container{
+    display: flex;
+    top: 50px;
+    width: 100%;
+    height: 500px;
+    flex-wrap: wrap;
+}
+#div-container > * {
+    max-width: 17%;
+    flex: 1 1 17%;
+    height: 100px;
+    margin-left: 2px;
+}
+
+.box {
+    border: solid black 3px;
+}
+.rightLine {
+    border-right: solid 3px black;
+}
+.leftLine {
+    border-left: solid 3px black;
+}
+.topLine{
+    border-top: solid 3px black;
+}
+
+#div-arrows{
+    margin-top: 50px;
+    bottom: 120px;
+    width: 82%;
+    height: 200px;
+    text-align: center;
+    padding: 40px;
+}
+.leftArrow, .rightArrow {
+    display: inline-block;
+}
+.leftArrow > img {
+    transform: rotate(-90deg);
+    margin-right: 150px;
+}
+.rightArrow > img {
+    transform: rotate(90deg);
+}
+.bottomArrow > img {
+    transform: rotate(180deg);
+}
+
+
