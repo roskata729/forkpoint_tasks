@@ -1,0 +1,134 @@
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>SUDOKU game</title>
+		<link rel="shortcut icon" href="img/icon-32.png"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+		<link rel="stylesheet" href="css/styles.css"/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<header id="header">
+			<img class="header-icon" src="icon-32.png"></img>
+			<h1>SUDOKU game</h1>
+		</header>
+		<div class="main">
+			<div class="container">
+				<form id="mainForm" class="exchange-rates-form">
+					<div class="row align-items-center">
+						<div class="col-12">
+							<h4>Use <a href="https://github.com/berto/sugoku">SUDOKU generator</a> to create SUDOKU game.</h4>
+							<ul>
+								<li>Create an AJAX request to the SUDOKU API and attach that functionality on button click. This functionality should get the SUDOKU difficulty from the page and send it to the API.</li>
+								<li>Render error message if the request you've send is invalid (You can test that by sending invalid difficulty - response will contain only zeroes).</li>
+								<li>Create SUDUKU game within the HTML page ("game-container") if the response from the API is valid.</li>
+							</ul>
+						</div>
+						<div class="col-8">
+							<div class="row align-items-center">
+								<label class="col-4 pr-0 m-0" for="difficulty">SUDOKU difficulty: </label>
+								<div class="col-8 pl-0">
+									<select class="form-control" name="difficulty" id="difficulty">
+										<option value="">Select...</option>
+										<option value="easy">easy</option>
+										<option value="medium">medium</option>
+										<option value="hard">hard</option>
+										<option value="random">random</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-4">
+							<button class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+				<div class="row">
+					<div class="col-12 results">
+						<div class="game-container"></div>
+
+						<div class="error-message"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function(){
+				
+				$("#mainForm").on('submit', function(e){
+					e.preventDefault(0);
+				});
+
+
+				const emptyBoard =  	
+							[[0,0,0,0,0,0,0,0,0],
+							[0,0,0,0,0,0,0,0,0],
+							[0,0,0,0,0,0,0,0,0],
+							[0,0,0,0,0,0,0,0,0],
+							[0,0,0,0,0,0,0,0,0],
+							[0,0,0,0,0,0,0,0,0],
+							[0,0,0,0,0,0,0,0,0],
+							[0,0,0,0,0,0,0,0,0],
+							[0,0,0,0,0,0,0,0,0]]
+				;
+
+				function createSudoku (board)
+				{
+					$(".game-container").empty();
+
+					let tbl = document.createElement('table');
+					tbl.style.width = '100%';
+					tbl.setAttribute('border', '1');
+					let tbdy = document.createElement('tbody');
+
+					for (let i = 0; i < board.board.length; i++) {
+						let tr = document.createElement('tr');
+							for (let j = 0; j < board.board[0].length; j++) {
+							
+								let td = document.createElement('td');
+								td.appendChild(document.createTextNode(board.board[i][j]))
+								tr.appendChild(td);
+							}
+						tbdy.appendChild(tr);
+					}
+					tbl.appendChild(tbdy);
+					$('.game-container').append(tbl);
+				}
+				
+
+
+			//gets the difficulty from the form
+				$(".col-4 > button").click(function(){
+					const sudokuDifficulty = $("#difficulty > option:selected").val();
+					data = {
+						difficulty: sudokuDifficulty
+						// Change the value of difficulty to test the error
+						
+					};
+					//alert(sudokuDifficulty);
+					let url = "https://sugoku.herokuapp.com/board";
+					$.ajax({
+						type: "GET",
+						url: url,
+						data: data,
+						complete: function(){
+						},
+						error: function(){
+							createSudoku(emptyBoard)
+						},
+						success: function(response){
+							console.log(response);
+							createSudoku(response);
+						},
+						dataType: "json"
+						});
+
+				});
+			});
+
+
+		</script>
+	</body>
+</html>
