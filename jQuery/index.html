@@ -48,36 +48,21 @@
 				<div class="row">
 					<div class="col-12 results">
 						<div class="game-container"></div>
-
-						<div class="error-message"></div>
+						<div class="error-message">The chosen difficulty is incorrect.</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script>
 			$(document).ready(function(){
-				
+				//Prevent the from from resetting the page
 				$("#mainForm").on('submit', function(e){
 					e.preventDefault(0);
 				});
-
-
-				const emptyBoard =  	
-							[[0,0,0,0,0,0,0,0,0],
-							[0,0,0,0,0,0,0,0,0],
-							[0,0,0,0,0,0,0,0,0],
-							[0,0,0,0,0,0,0,0,0],
-							[0,0,0,0,0,0,0,0,0],
-							[0,0,0,0,0,0,0,0,0],
-							[0,0,0,0,0,0,0,0,0],
-							[0,0,0,0,0,0,0,0,0],
-							[0,0,0,0,0,0,0,0,0]]
-				;
-
+				
+				// Create a table to visualise the sudoku
 				function createSudoku (board)
 				{
-					$(".game-container").empty();
-
 					let tbl = document.createElement('table');
 					tbl.style.width = '100%';
 					tbl.setAttribute('border', '1');
@@ -101,6 +86,10 @@
 
 			//gets the difficulty from the form
 				$(".col-4 > button").click(function(){
+					$(".game-container").empty();
+					$(".error-message").hide();
+					//$(".error-message").hide();
+					
 					const sudokuDifficulty = $("#difficulty > option:selected").val();
 					data = {
 						difficulty: sudokuDifficulty
@@ -115,8 +104,9 @@
 						data: data,
 						complete: function(){
 						},
-						error: function(){
-							createSudoku(emptyBoard)
+						error: function(response){
+							createSudoku(response)
+							$(".error-message").show();
 						},
 						success: function(response){
 							console.log(response);
