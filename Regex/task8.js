@@ -10,8 +10,8 @@ function testDate(testString) {
 
         let maxDays = 31;
 
-        switch(month){
-            case '02' : {
+        
+            if(month == '02'){
                 //leap year
                 if(year % 4 == 0){
                     maxDays = 29;
@@ -19,25 +19,11 @@ function testDate(testString) {
                 else{
                     maxDays = 28;
                 }
-                break;
             }
-            case '04' : {
+            else if(month == '04' || month == '06' || month == '09' || month == '11')
                 maxDays = 30;
-                break;
-            }
-            case '06' : {
-                maxDays = 30;
-                break;
-            }
-            case '09' : {
-                maxDays = 30;
-                break;
-            }
-            case '11' : {
-                maxDays = 30;
-                break;
-            }
-        }
+               
+        
         if(day > maxDays) return false;
         if(month > 12) return false;
         return true;
