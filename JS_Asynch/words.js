@@ -16,9 +16,15 @@ const makeCaps = (words) => new Promise((resolve, reject) => {
         reject(Error('Not all elements are of type string'))
     }
 })
-const sortAllWords = (words) => {
-    return words.sort()
-}
+const sortAllWords = (words) =>new Promise((resolve,reject) => {
+    if(words.every(word => typeof word === 'string')){
+        resolve(words.sort())
+    }
+    else
+    {
+        reject(Error('Not all elements are of type string'))
+    }
+})
 makeCaps(myWords)
     .then(words => sortAllWords(words))
     .then(words => console.log(words))
