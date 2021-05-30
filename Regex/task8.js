@@ -4,9 +4,11 @@ function testDate(testString) {
     if (!isValidDate) {
         return false;
     } else {
-        const year = testString.slice(0,4);
-        const month = testString[4] + testString[5];
-        const day = testString[6] + testString[7];
+        const year = testString.substring(0,4);
+        const month = testString.substring(4,6);
+        const day = testString.substring(6,8);
+
+        console.log(year,month,day);
 
         let maxDays = 31;
 
