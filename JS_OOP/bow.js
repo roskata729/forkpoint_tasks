@@ -1,3 +1,4 @@
+const Weapon = require('./weapon').Weapon;
 const arrowTypes = ['normal', 'special']; // all Arrow types
 class Bow extends Weapon{
 
@@ -40,3 +41,5 @@ class Bow extends Weapon{
     }
 
 }
+let myFirstItem = new Bow('MyFirstBow', 15000, 'earth', 'special');
+console.log(myFirstItem.getItemInfo());
