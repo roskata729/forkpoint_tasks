@@ -22,46 +22,47 @@ $(document).ready(function(){
     let boxPosX = 2;
     let boxPosY = 2;
 
+    const addNewDivToAParent = (parentElement, childClass) => {
+        let line = $('<div></div>');
+        if(childClass !== null){
+            line.addClass(childClass);
+            $(parentElement).append(line);
+        }
+    }
+
     function generateBoard(board){
 
-        $("#div-container").removeData();
+        const divContainer = $('#div-container');
 
-        for(var i = 0;i < board.length;i++){
-            for(var j = 0;j < board[i].length;j++){
+        divContainer.removeData();
+        
+
+        for(let i = 0;i < board.length;i++){
+            for(let j = 0;j < board[i].length;j++){
                 //alert(i + " " + j);
                 if(board[i][j] == 0) 
                 {
-                    $("#div-container").append('<div></div>');
-                    //$('body').append(line);
+                    addNewDivToAParent(divContainer);
                 }
                 else if(board[i][j] == 1) {
                     //Top Row
                     if(i == 0){
-                        var line = $('<div></div>');
-                        line.addClass('topLine');
-                        $("#div-container").append(line);
-                    //$('body').append(line);
+                        addNewDivToAParent(divContainer,'topLine');
                     }
                     //Starting row
                     else if(i == 2){
                         //Left Line
                         if(j == 0){
-                            var line = $('<div></div>');
-                            line.addClass('leftLine');
-                            $("#div-container").append(line);
+                            addNewDivToAParent(divContainer,'leftLine');
                         }
                         //Right Line
                         if(j == 4){
-                            var line = $('<div></div>');
-                            line.addClass('rightLine');
-                            $("#div-container").append(line);
+                            addNewDivToAParent(divContainer,'rightLine');
                         }
                     }
                 }
                 else if(board[i][j] == 2){
-                    var box = $('<div></div>');
-                    box.addClass('box');
-                    $("#div-container").append(box);
+                    addNewDivToAParent(divContainer,'box');
                     boardPosX = i;
                     boardPosY = j;
                 }
@@ -73,8 +74,14 @@ $(document).ready(function(){
     
     function updateBoard(boxPosX,boxPosY,directionX,directionY, board){
 
-        [board[boxPosX][boxPosY],board[directionX][directionY]] 
-        = [board[directionX][directionY], board[boxPosX][boxPosY]];
+        // Swaps the given elements
+        //[board[boxPosX][boxPosY],board[directionX][directionY]] 
+        //= [board[directionX][directionY], board[boxPosX][boxPosY]];
+
+        // Swaps the given elements
+        let temp = board[boxPosX][boxPosY];
+        board[boxPosX][boxPosY] = board[directionX][directionY];
+        board[directionX][directionY] = temp;
 
         generateBoard(board);
         return board;

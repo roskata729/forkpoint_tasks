@@ -10,6 +10,7 @@
     flex: 1 1 17%;
     height: 100px;
     margin-left: 2px;
+    margin:auto;
 }
 
 .box {
@@ -32,6 +33,7 @@
     height: 200px;
     text-align: center;
     padding: 40px;
+    margin: auto;
 }
 .leftArrow, .rightArrow {
     display: inline-block;
