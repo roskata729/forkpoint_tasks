@@ -28,15 +28,13 @@
 		</div>
 		<script>
 			$(document).ready(function(){
-				const newDiv = document.createElement("div");
-				newDiv.classList = 'box red';
 				
-				$(".box-container > .box:first-child").after(newDiv);
+				$(".box-container > .box:first-child").after($("<div></div>").addClass("box red"));
 
-				const newLink = document.createElement("a");
-				newLink.className = "new";
-				newLink.setAttribute("href","#");
-				newLink.text = "new link";
+				const newLink = $("<a></a>");
+				newLink.attr("href", "#");
+				newLink.addClass("new");
+				newLink.append("new link");
 				
 				$(".link-list").append(newLink);
 
