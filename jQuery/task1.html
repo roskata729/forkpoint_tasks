@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>Task 1</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="main-container">
+			<div class="task-description">
+				<ol>
+					<li>Select all odd items from the first list and add them class "red".</li>
+					<li>КBy using jQuery methods chaining add class "blue" on each even item of the first list and on the last 3 items of the second one.</li>
+				</ol>
+			</div>
+			<div class="task-body">
+				<ul class="list">
+					<li>one</li>
+					<li>two</li>
+					<li>three</li>
+					<li>four</li>
+					<li>five</li>
+					<li>six</li>
+				</ul>
+				<ul class="list">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+					<li>5</li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function(){
+				$(".task-body > .list:first-child > li:even").addClass("red");
+				$(".task-body > .list:first-child > li:odd").addClass("blue");
+				$(".task-body > .list:last-child > li:nth-last-of-type(-n+3)").addClass("blue");
+			});
+
+		</script>
+	</body>
+</html>
