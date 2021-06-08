@@ -1,12 +1,14 @@
 function testDate(testString) {
-    const dateSeparator = /^[0-9]{4}[0-9]{2}[0-9]{2}/;
-    const isValidDate = dateSeparator.exec(testString);
-    if (!isValidDate) {
+    const dateSeparator = /^([1-2][0,9][1-2][0-9])([0-1][1-9])([0-3][0-9])/;
+    const dateRegex = dateSeparator.exec(testString);
+    if (!dateRegex) {
         return false;
     } else {
-        const year = testString.substring(0,4);
-        const month = testString.substring(4,6);
-        const day = testString.substring(6,8);
+        const year = dateRegex[1];
+        const month = dateRegex[2];
+        const day = dateRegex[3];
+
+        console.log(dateRegex[0]);
 
         console.log(year,month,day);
 
