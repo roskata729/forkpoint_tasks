@@ -1,0 +1,47 @@
+<!--
+    8.	Know how to traverse the DOM using JavaScript provides a foundation to altering an HTML page in real time. Using the HTML markup in Listing 1, perform these tasks:
+●	Use the firstChild property to access an element.
+●	Use the lastChild property to access an element.
+●	Use the nextSibling property to access an element.
+●	Use the previousSibling property to access an element.
+●	Use the parentNode property to access an element.
+●	Use the childNodes property to access a group of child elements.
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>JS DOM</title>
+</head>
+<body>
+   <div id="page">
+       <div id="header">
+           <h1 id="title">
+               Page Title
+           </h1>
+       </div>
+       <div id="content">
+           <h2>Content Title</h2>
+           <p>Some copy goes here</p>
+           <p>Some copy goes here</p>
+       </div>
+   </div>
+
+<script>
+    document.getElementById("content").firstChild.textContent = "Changed title";
+    document.getElementById("content").lastChild.textContent = "Changed last child of content";
+    document.getElementById("header").nextSibling.textContent = "This is the next sibling";
+    document.getElementById("header").previousSibling.textContent = "This is the previous sibling";
+    var parentNodeVar = document.getElementById("content").parentNode.id;
+    alert("The id of the parent node of content is: " + parentNodeVar);
+    var childNodeVar = document.getElementById("content").childNodes;
+    for(let i = 0; i < childNodeVar.length; i++){
+        childNodeVar[i].textContent += " Added part ";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!--
+    10.	Now that you know how to traverse the DOM and alter node values, the next logical step is to learn how to add, remove, and replace nodes. Perform the following tasks:
+●	Use the appendChild method to add a node.
+●	Use the insertBefore method to add a node.
+●	Use the removeChild method to remove a node.
+●	Use the replaceChild method to replace a node.
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>JS DOM</title>
+</head>
+<body>
+   <div id="page">
+       <div id="header">
+           <h1 id="title">
+               Page Title
+           </h1>
+       </div>
+       <div id="content">
+           <h2>Content Title</h2>
+           <p>Some copy goes here</p>
+           <p>Some copy goes here</p>
+           <button onclick="useOfRemoveChild()">Remove The Last Element</button>
+           <button onclick="useOfReplaceChild()">Replace the para element with the div element</button>
+       </div>
+   </div>
+
+    <script>
+        // Use of AppendChild
+        var divElem = document.createElement('div');
+        var newContent = document.createTextNode("My new Div Node");
+        divElem.appendChild(newContent);
+        document.body.appendChild(divElem);
+        // Use of insertBefore
+        var paraElem = document.createElement('p');
+        var newContent2 = document.createTextNode("My new paragraph Node");
+        paraElem.appendChild(newContent2);
+        document.body.insertBefore(paraElem,divElem);
+        // Use of removeChild
+        function useOfRemoveChild(){
+            document.body.removeChild(document.body.lastChild);
+        }
+        // Use of replaceChild
+        var newParagraph = document.createElement("p");
+        newParagraph.innerText = "I replaced the div element";
+        function useOfReplaceChild(){
+            document.body.replaceChild(newParagraph,divElem);
+        }
+    </script>
+
+</body>
+</html>
