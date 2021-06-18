@@ -14,8 +14,6 @@
 // 1 is target
 // 2 is box
 
-
-
 $(document).ready(function(){
     
     let board = [[0,0,1,0,0], [0,0,0,0,0], [1,0,2,0,1]];
@@ -87,17 +85,27 @@ $(document).ready(function(){
         return board;
     }
 
+    const resetBoard = () =>{
+            board = [[0,0,1,0,0], [0,0,0,0,0], [1,0,2,0,1]];
+            generateBoard(board);
+            boxPosX = 2;
+            boxPosY = 2;
+    }
+
+    const restartGame = () =>{
+        setTimeout(function(){alert("You've WON!")}, 800);
+        setTimeout(function(){document.getElementById("div-container").innerHTML = "";},500)
+        setTimeout(function(){resetBoard();}, 2000);
+    }
+
     const checkWin = (boardPosX,boardPosY) => {
         if(boardPosX == 2){
             if(boardPosY == 0 || boardPosY == 4) {
-                document.getElementById("div-container").innerHTML = "";
-                alert("You've WON!");
+                restartGame();
             }
-
         }
         else if(boardPosX == 0 && boardPosY == 2) {
-            document.getElementById("div-container").innerHTML = "";
-            alert("You've WON!");
+            restartGame();
         }
     }
 
