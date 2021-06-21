@@ -3,8 +3,8 @@ const mdbClient = require('mongodb').MongoClient;
 
 module.exports = function routeHello(req, res) {
   mdbClient.connect('mongodb://localhost:27017', (err, client) => {
-    const db = client.db('shop');
-    const collection = db.collection('categories');
+    const db = client.db('Shop');
+    const collection = db.collection('Categories');
 
     collection.find().toArray((collErr, items) => {
       res.render('hello', {

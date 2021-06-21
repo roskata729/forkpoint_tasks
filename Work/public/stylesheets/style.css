@@ -5183,3 +5183,18 @@ a.thumbnail {
 .footer-wrapper .footerNotifier {
   font-weight: bold;
   font-size: 30px; }
+
+body{
+  padding-left: 60px;
+}
+.headerNotification a{
+  padding-left: 40px;
+}
+.subCategories{
+  position: relative;
+  left: 650px;
+}
+.header-wrapper{
+  border: black 2px solid;
+  margin-top: 50px;
+}

@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
 
+const {MongoClient} = require('mongodb');
+
 const routes = {
   index: require('./routes/index'),
   hello: require('./routes/hello'),
@@ -38,6 +40,12 @@ app.use(express.errorHandler());
 // App routes
 app.get('/', routes.index);
 app.get('/hello', routes.hello);
+
+//DB
+//const categories = db.getCollection("Categories");
+
+
+
 
 // Run server
 http.createServer(app).listen(app.get('port'), () => {
