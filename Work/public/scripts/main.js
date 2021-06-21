@@ -1,7 +1,7 @@
 /*
 async function main(){
   
-    const uri = "mongodb+srv://roskata729:roskata987698@cluster0.ja6gl.mongodb.net/test";
+    const uri = "mongodb+srv://roskata729:password@cluster0.ja6gl.mongodb.net/test";
   
   
     const client = new MongoClient(uri);

@@ -1,9 +1,8 @@
 <%- include ('header.ejs') %>
-	
-	<div class="body-wrapper">
-		<h1><%= title %></h1>
-		<p>Welcome to <%= title %></p>
-		<ol>
+
+    <div class="bodyContainer">
+        <h1><%= title %></h1>
+        <ol>
             <% _.each(items, function(topC) { %>
             <li>
                 <h1><%= topC.name %></h1>
@@ -12,10 +11,11 @@
                 <div>
                     <img src="/images/<%= topC.image %>">
                 </div>
-                <% }}) %>
-			</li>
-		</ol>
-
-	</div>
+                <% } %>
+                   
+            </li>
+            <% }); %>
+        </ol>
+    </div>
 
 <%- include ('footer.ejs') %>

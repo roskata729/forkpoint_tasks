@@ -12,6 +12,8 @@ const {MongoClient} = require('mongodb');
 const routes = {
   index: require('./routes/index'),
   hello: require('./routes/hello'),
+  mainCat: require('./routes/mainCat'),
+  subCat: require('./routes/subCat'),
 };
 
 const app = express();
@@ -40,6 +42,8 @@ app.use(express.errorHandler());
 // App routes
 app.get('/', routes.index);
 app.get('/hello', routes.hello);
+app.get('/mainCat', routes.mainCat);
+app.get('/subCat', routes.subCat);
 
 //DB
 //const categories = db.getCollection("Categories");

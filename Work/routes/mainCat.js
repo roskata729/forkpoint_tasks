@@ -7,15 +7,16 @@ module.exports = function routeHello(req, res) {
     const db = client.db('Shop');
     const collection = db.collection('Categories');
 
+    let query = { id : "womens" };
     
-    collection.find().toArray((collErr, items) => {
+    collection.find(query).toArray((collErr, items) => {
       
-      res.render('index', {
+      res.render('mainCat', {
         // Underscore.js lib
         _,
 
         // Template data
-        title: 'Online Store',
+        title: items.name,
         items,
       });
       client.close();

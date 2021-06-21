@@ -5198,3 +5198,9 @@ body{
   border: black 2px solid;
   margin-top: 50px;
 }
+.product {
+  border: 3px solid black;
+  display: inline-flex;
+  width: 33%;
+  text-align: left;
+}
