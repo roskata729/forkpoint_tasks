@@ -1,4 +1,9 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable indent */
+/* eslint-disable linebreak-style */
 /* eslint-disable global-require */
+
 // Module dependencies.
 const express = require('express');
 const http = require('http');
@@ -6,8 +11,10 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
+const _ = require('underscore');
 
-const {MongoClient} = require('mongodb');
+const { MongoClient } = require('mongodb');
+const mainCat = require('./routes/mainCat');
 
 const routes = {
   index: require('./routes/index'),
@@ -15,6 +22,8 @@ const routes = {
   mainCat: require('./routes/mainCat'),
   subCat: require('./routes/subCat'),
 };
+
+const connectionString = 'mongodb+srv://roskata729:12345622@cluster0.ja6gl.mongodb.net/test';
 
 const app = express();
 
@@ -44,15 +53,36 @@ app.get('/', routes.index);
 app.get('/hello', routes.hello);
 app.get('/mainCat', routes.mainCat);
 app.get('/subCat', routes.subCat);
+app.get('/product', routes.subCat);
 
-//DB
-//const categories = db.getCollection("Categories");
+//DB Setup
+const initDb = require("./mongo").initDb;
+const getDb = require("./mongo").getDb;
+const { _db } = require('./mongo');
 
-
+ app.get('/mainCat/:id', (req, res) => {
+        console.log(req.params.id);
+        res.render('mainCat', { 
+        _,
+        title: req.params.id.toUpperCase(),
+        qs: req.params.id,
+        items: [],
+      });
+});
 
 
 // Run server
-http.createServer(app).listen(app.get('port'), () => {
-  // eslint-disable-next-line no-console
-  console.log(`Express server listening on port ${app.get('port')}`);
+// http.createServer(app).listen(app.get('port'), () => {
+//   // eslint-disable-next-line no-console
+//   console.log(`Express server listening on port ${app.get('port')}`);
+// });
+
+//Start server
+initDb(function (err) {
+  http.createServer(app).listen(app.get('port'), (err) => {
+      if (err) {
+          throw err; //
+      }
+      console.log("API Up and running on port " + app.get('port'));
+  })
 });

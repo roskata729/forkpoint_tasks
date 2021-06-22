@@ -21,6 +21,7 @@
     "gulp-eslint": "^5.0.0",
     "gulp-sass": "^4.0.1",
     "method-override": "^3.0.0",
+    "mongo-express-req": "^3.0.2",
     "mongodb": "^3.6.9",
     "underscore": "^1.9.1"
   }
