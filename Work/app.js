@@ -51,34 +51,19 @@ app.use(express.errorHandler());
 // App routes
 app.get('/', routes.index);
 app.get('/hello', routes.hello);
-app.get('/mainCat', routes.mainCat);
-app.get('/subCat', routes.subCat);
+app.get('/mainCat/:id', routes.mainCat);
+app.get('/subCat/:id', routes.subCat);
 app.get('/product', routes.subCat);
+
+
+// Run server
+function startServer() {
+  http.createServer(app).listen(app.get('port'), () => {
+    console.log(`Express server listening on port ${app.get('port')}`);
+  });
+}
 
 //DB Setup
 const mongoUtil = require('./mongo');
 
-mongoUtil.connectToServer(function( err, client ) {
-    if (err) console.log(err);
-
-    const db = mongoUtil.getDb();
-    const collection = db.collection('Categories');
-    
-        app.get('/mainCat/:id', (req, res) => {
-          const queryString = { id: req.params.id};
-          collection.find(queryString).toArray((collErr, items) => {
-          //console.log(req.params.id);
-          
-          res.render('mainCat', { 
-          _,
-          title: req.params.id.toUpperCase(),
-          items,
-        });
-    });
-  });
-});
-
-// Run server
- http.createServer(app).listen(app.get('port'), () => {
-   console.log(`Express server listening on port ${app.get('port')}`);
- });
+mongoUtil.connectToServer(() => startServer());

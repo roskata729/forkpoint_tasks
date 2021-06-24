@@ -1,12 +1,12 @@
 <%- include ('header.ejs') %>
 
     <div class="bodyContainer">
-        <h1><%= title %></h1>
+        
         <ol>
-            <% _.each(items, function(topC) { %>
             <li>
                 <h1><%= topC.name %></h1>
                 <p><%= topC.page_description %></p>
+                <br><br>
                 <% if (topC.image) { %>
                 <div>
                     <img src="/images/<%= topC.image %>">
@@ -16,19 +16,21 @@
                     <ol>
                         <% _.each(topC.categories, function(subC) { %>
                         <li>
-                            <h2><%= subC.name %></h1>
-                            <p><%= subC.page_description %></p>
-                            <% if (subC.image) { %>
-                            <div>
+                            <h2 class="subCatTitle"><%= subC.name %></h2>
+                            <% if(subC.image){ %>
+                            <div class="subCatImg">
                                 <img src="/images/<%= subC.image %>">
                             </div>
-                            <% } %>
+                            <% } %> 
+                            <p class="subCatDesc"><%= subC.page_description %></p>
+                            <button class="btnViewProducts">View Products</button>
+                            <hr>
+                            
                         </li>
                         <% }); %>                    
                     </ol>
                 </div>    
             </li>
-            <% }); %>
         </ol>
     </div>
 

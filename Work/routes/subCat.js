@@ -6,27 +6,25 @@
 /* eslint-disable linebreak-style */
 
 const _ = require('underscore');
-const mdbClient = require('mongodb').MongoClient;
+const mongoUtil = require('../mongo');
 
-module.exports = function routeSub(req, res) {
-  mdbClient.connect('mongodb+srv://roskata729:12345622@cluster0.ja6gl.mongodb.net/test', (err, client) => {
+
+//console.log(mongoUtil.getDb());
+
+module.exports = async function routeSub(req, res) {
+  const qId = req.params.id;
+  const db = mongoUtil.getDb();
+  const category = db.collection('Categories');
+
+  const queryCategory = await category.findOne({ id: qId });
+  //console.log(queryCategory);
+  
+  res.render('subCat', {
     
-    const db = client.db('Shop');
-    const collection = db.collection('Products');
-
-    //let query = { id : "" };
-    
-    collection.find().toArray((collErr, items) => {
-      
-      res.render('subCat', {
-        // Underscore.js lib
-        _,
-
-        // Template data
-        title: 'Products',
-        items,
-      });
-      client.close();
-    });
+    _,
+    title: queryCategory.name,
+    items: [],
+    topC: queryCategory,
+    parentCat: queryCategory.parent_category_id === 'root' ? 'Index' : queryCategory.parent_category_id,
   });
 };

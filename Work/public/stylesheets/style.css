@@ -5190,9 +5190,9 @@ body{
 .headerNotification a{
   padding-left: 40px;
 }
-.subCategories{
+.mainCategories{
   position: relative;
-  left: 650px;
+  left: 800px;
 }
 .header-wrapper{
   border: black 2px solid;
@@ -5203,4 +5203,22 @@ body{
   display: inline-flex;
   width: 33%;
   text-align: left;
+}
+.bodyContainer{
+  text-align: center;
+}
+.subCatTitle{
+  text-align: center;
+}
+.subCatImg{
+  margin-bottom: 20px;
+}
+ol{
+  list-style-type: none;
+}
+.subCatDesc{
+  text-overflow: ellipsis;
+  width: 60%;
+  text-align: center;
+  margin-left: 320px;
 }

@@ -9,36 +9,20 @@ const mongoUtil = require('../mongo');
 
 //console.log(mongoUtil.getDb());
 
-module.exports = function routeMain(req, res) {
+module.exports = async function routeMain(req, res) {
+  const qId = req.params.id;
+  const db = mongoUtil.getDb();
+  const category = db.collection('Categories');
+
+  const queryCategory = await category.findOne({ id: qId });
+  //console.log(queryCategory);
+  
+  res.render('mainCat', {
     
-    mongoUtil.connectToServer(function( err, client ) {
-      if (err) console.log(err);
-
-      const db = mongoUtil.getDb();
-      const collection = db.collection('Categories');
-
-
-    collection.find().toArray((collErr, items) => {
-      
-      res.render('mainCat', {
-        // Underscore.js lib
-        _,
-        
-        // Template data
-        title: 'Main Category',
-        items,
-      });
-    });
+    _,
+    title: queryCategory.name,
+    items: [],
+    topC: queryCategory,
+    parentCat: queryCategory.parent_category_id === 'root' ? 'Index' : queryCategory.parent_category_id,
   });
 };
-
-
-  // app.get('/mainCat/:id', (req, res) => {
-  //   //console.log(req.params.id);
-  //   res.render('mainCat', { 
-  //   _,
-  //   title: req.params.id.toUpperCase(),
-  //   qs: req.params.id,
-  //   items: [],
-  //});
-  //});
