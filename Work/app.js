@@ -56,33 +56,29 @@ app.get('/subCat', routes.subCat);
 app.get('/product', routes.subCat);
 
 //DB Setup
-const initDb = require("./mongo").initDb;
-const getDb = require("./mongo").getDb;
-const { _db } = require('./mongo');
+const mongoUtil = require('./mongo');
 
- app.get('/mainCat/:id', (req, res) => {
-        console.log(req.params.id);
-        res.render('mainCat', { 
-        _,
-        title: req.params.id.toUpperCase(),
-        qs: req.params.id,
-        items: [],
-      });
+mongoUtil.connectToServer(function( err, client ) {
+    if (err) console.log(err);
+
+    const db = mongoUtil.getDb();
+    const collection = db.collection('Categories');
+    
+        app.get('/mainCat/:id', (req, res) => {
+          const queryString = { id: req.params.id};
+          collection.find(queryString).toArray((collErr, items) => {
+          //console.log(req.params.id);
+          
+          res.render('mainCat', { 
+          _,
+          title: req.params.id.toUpperCase(),
+          items,
+        });
+    });
+  });
 });
-
 
 // Run server
-// http.createServer(app).listen(app.get('port'), () => {
-//   // eslint-disable-next-line no-console
-//   console.log(`Express server listening on port ${app.get('port')}`);
-// });
-
-//Start server
-initDb(function (err) {
-  http.createServer(app).listen(app.get('port'), (err) => {
-      if (err) {
-          throw err; //
-      }
-      console.log("API Up and running on port " + app.get('port'));
-  })
-});
+ http.createServer(app).listen(app.get('port'), () => {
+   console.log(`Express server listening on port ${app.get('port')}`);
+ });

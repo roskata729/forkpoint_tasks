@@ -3,16 +3,21 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable linebreak-style */
 const _ = require('underscore');
-const mdbClient = require('mongodb').MongoClient;
+//const mdbClient = require('mongodb').MongoClient;
+const mongoUtil = require('../mongo');
 
+
+//console.log(mongoUtil.getDb());
 
 module.exports = function routeMain(req, res) {
-  mdbClient.connect('mongodb+srv://roskata729:12345622@cluster0.ja6gl.mongodb.net/test', (err, client) => {
     
-    const db = client.db('Shop');
-    const collection = db.collection('Categories');
+    mongoUtil.connectToServer(function( err, client ) {
+      if (err) console.log(err);
 
-    
+      const db = mongoUtil.getDb();
+      const collection = db.collection('Categories');
+
+
     collection.find().toArray((collErr, items) => {
       
       res.render('mainCat', {
@@ -20,11 +25,20 @@ module.exports = function routeMain(req, res) {
         _,
         
         // Template data
-        qs: req.params.query,
         title: 'Main Category',
         items,
       });
-      client.close();
     });
   });
 };
+
+
+  // app.get('/mainCat/:id', (req, res) => {
+  //   //console.log(req.params.id);
+  //   res.render('mainCat', { 
+  //   _,
+  //   title: req.params.id.toUpperCase(),
+  //   qs: req.params.id,
+  //   items: [],
+  //});
+  //});
