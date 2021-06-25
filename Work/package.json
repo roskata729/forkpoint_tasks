@@ -2,6 +2,7 @@
   "name": "app",
   "version": "0.0.1",
   "private": true,
+  "editor.formatOnSave": true,
   "scripts": {
     "start": "node app.js"
   },

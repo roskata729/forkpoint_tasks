@@ -8,7 +8,6 @@
 const _ = require('underscore');
 const mongoUtil = require('../mongo');
 
-
 //console.log(mongoUtil.getDb());
 
 module.exports = async function routeSub(req, res) {
@@ -16,15 +15,23 @@ module.exports = async function routeSub(req, res) {
   const db = mongoUtil.getDb();
   const category = db.collection('Categories');
 
-  const queryCategory = await category.findOne({ id: qId });
+  const queryCategory = await category.findOne({
+    'categories.categories': { $elemMatch: { id: qId } },
+  });
+  console.log(qId);
+
+  //console.log(qId);
+  console.log(queryCategory);
   //console.log(queryCategory);
-  
+
   res.render('subCat', {
-    
     _,
     title: queryCategory.name,
     items: [],
     topC: queryCategory,
-    parentCat: queryCategory.parent_category_id === 'root' ? 'Index' : queryCategory.parent_category_id,
+    parentCat:
+      queryCategory.parent_category_id === 'root'
+        ? 'Index'
+        : queryCategory.parent_category_id,
   });
 };

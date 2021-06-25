@@ -1,21 +1,20 @@
 <%- include ('header.ejs') %>
-	
-	<div class="body-wrapper">
-		<h1><%= title %></h1>
-		<p>Welcome to <%= title %></p>
-		<ol>
-            <% _.each(items, function(topC) { %>
-            <li>
-                <h1><%= topC.name %></h1>
-                <p><%= topC.page_description %></p>
-                <% if (topC.image) { %>
-                <div>
-                    <img src="/images/<%= topC.image %>">
-                </div>
-                <% }}) %>
-			</li>
-		</ol>
 
-	</div>
+<div class="body-wrapper">
+  <h1><%= title %></h1>
+  <p>Welcome to <%= title %></p>
+  <ol>
+    <% _.each(items, function(topC) { %>
+    <li>
+      <h1><%= topC.name %></h1>
+      <p><%= topC.page_description %></p>
+      <% if (topC.image) { %>
+      <div>
+        <img src="/images/<%= topC.image %>" />
+      </div>
+      <% }}) %>
+    </li>
+  </ol>
+</div>
 
 <%- include ('footer.ejs') %>

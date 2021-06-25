@@ -6,7 +6,6 @@ const _ = require('underscore');
 //const mdbClient = require('mongodb').MongoClient;
 const mongoUtil = require('../mongo');
 
-
 //console.log(mongoUtil.getDb());
 
 module.exports = async function routeMain(req, res) {
@@ -16,13 +15,15 @@ module.exports = async function routeMain(req, res) {
 
   const queryCategory = await category.findOne({ id: qId });
   //console.log(queryCategory);
-  
+
   res.render('mainCat', {
-    
     _,
     title: queryCategory.name,
     items: [],
     topC: queryCategory,
-    parentCat: queryCategory.parent_category_id === 'root' ? 'Index' : queryCategory.parent_category_id,
+    parentCat:
+      queryCategory.parent_category_id === 'root'
+        ? 'Index'
+        : queryCategory.parent_category_id,
   });
 };

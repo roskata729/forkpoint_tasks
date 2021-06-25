@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title><%= title %></title>
-        <link rel="stylesheet" href="/stylesheets/style.css" />
-    </head>
-  	
-    <body>
-        <div class="header-wrapper">
-            <span class="headerNotification">Online Store
-                <a href="/mainCat/mens" class="mainCategories">Mens</a>
-                <a href="/mainCat/womens" class="mainCategories">Womens</a>
-            </span>
-        </div>
-        <div class = "headerHierarchy"><%= parentCat %> / <%= topC.name %></div>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+
+  <body>
+    <div class="header-wrapper">
+      <span class="headerNotification"
+        >Online Store
+        <a href="/mainCat/mens" class="mainCategories">Mens</a>
+        <a href="/mainCat/womens" class="mainCategories">Womens</a>
+      </span>
+    </div>
+    <div class="headerHierarchy">
+      <% if(parentCat){ %><%= parentCat %> / <% } %><%= topC.name %>
+    </div>
+  </body>
+</html>
