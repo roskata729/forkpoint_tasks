@@ -21,6 +21,8 @@ const routes = {
   hello: require('./routes/hello'),
   mainCat: require('./routes/mainCat'),
   subCat: require('./routes/subCat'),
+  product: require('./routes/product'),
+  productsofcat: require('./routes/productsofcat'),
 };
 
 const connectionString =
@@ -56,7 +58,8 @@ app.get('/', routes.index);
 app.get('/hello', routes.hello);
 app.get('/mainCat/:id', routes.mainCat);
 app.get('/subCat/:id', routes.subCat);
-//app.get('/product', routes.subCat);
+app.get('/product/:id', routes.product);
+app.get('/productsofcat/:id', routes.productsofcat);
 
 // Run server
 function startServer() {

@@ -1,0 +1,27 @@
+<%- include ('header.ejs') %>
+
+<div class="bodyContainer">
+  <h1><%= title %></h1>
+  <ol>
+    <div class="subCatContainer">
+      <% _.each(topC, function(item) { %>
+      <li>
+        <div class="subCatProducts">
+          <h4><%= item.name %></h4>
+
+          <div>
+            <!-- Edit This! -->
+            <img src="/images/<%= item.image_groups[0].images[0].link %>" />
+            <!--  -->
+            <p><%= item.page_description %></p>
+            Price: <%= item.price %> <%= item.currency %>
+            <button><a href="/product/<%= item.id %>">More Info</a></button>
+          </div>
+        </div>
+      </li>
+      <% }); %>
+    </div>
+  </ol>
+</div>
+
+<%- include ('footer.ejs') %>

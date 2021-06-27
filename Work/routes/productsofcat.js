@@ -10,37 +10,30 @@ const mongoUtil = require('../mongo');
 
 //console.log(mongoUtil.getDb());
 
-module.exports = async function routeSub(req, res) {
+module.exports = async function productsOfCat(req, res) {
   const qId = req.params.id;
   const db = mongoUtil.getDb();
-  const category = db.collection('Categories');
+  const category = db.collection('Products');
 
   const queryCategory = await category
-    .find(
-      { categories: { $elemMatch: { id: { $in: [qId] } } } },
-      { categories: 0 }
-    )
+    .find({
+      primary_category_id: qId,
+    })
     .toArray();
-  console.log(qId);
-
-  // queryCategory.categories.each(queryCategory.categories, (mainCat) => {
-  //   console.log(mainCat);
-  // });
+  //console.log(qId);
 
   //console.log(qId);
   console.log(queryCategory);
-  console.log(queryCategory.categories);
   //console.log(queryCategory);
 
-  res.render('subCat', {
+  res.render('productsofcat', {
     _,
     title: queryCategory.name,
     items: [],
     topC: queryCategory,
-    filter: qId,
-    // parentCat:
-    //   queryCategory.parent_category_id === 'root'
-    //     ? 'Index'
-    //     : queryCategory.parent_category_id,
+    parentCat:
+      queryCategory.parent_category_id === 'root'
+        ? 'Index'
+        : queryCategory.parent_category_id,
   });
 };

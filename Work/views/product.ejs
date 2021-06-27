@@ -1,0 +1,19 @@
+<%- include ('header.ejs') %>
+
+<div class="bodyContainer">
+  <ol>
+    <li>
+      <h4><%= topC.page_title %></h4>
+      <p><%= topC.page_description %></p>
+
+      <div>
+        <img src="/images/<%= topC.image_groups[0].images[0].link %>" />
+      </div>
+
+      <button>Buy Now</button>
+      <p>Price: <%= topC.price %> <%= topC.currency %></p>
+    </li>
+  </ol>
+</div>
+
+<%- include ('footer.ejs') %>

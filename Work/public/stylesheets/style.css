@@ -7368,3 +7368,11 @@ ol {
   text-align: center;
   margin-left: 320px;
 }
+.subCatContainer {
+  box-sizing: border-box;
+}
+.subCatProducts {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}

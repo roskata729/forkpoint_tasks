@@ -23,6 +23,19 @@
                                 <img src="/images/<%= subC.image %>">
                             </div>
                             <% } %>
+
+                            <% _.each(subC.categories, function(subSubC) { %>
+                                <li>
+                                    <h2><%= subSubC.name %></h1>
+                                    <p><%= subSubC.page_description %></p>
+                                    <% if (subSubC.image) { %>
+                                    <div>
+                                        <img src="/images/<%= subSubC.image %>">
+                                    </div>
+                                    <% } %>
+                                </li>
+                                <% }); %> 
+
                         </li>
                         <% }); %>                    
                     </ol>

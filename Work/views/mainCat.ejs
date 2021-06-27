@@ -22,7 +22,9 @@
             </div>
             <% } %>
             <p class="subCatDesc"><%= subC.page_description %></p>
-            <button class="btnViewProducts">View Products</button>
+            <button class="btnViewProducts">
+              <a href="/subCat/<%= subC.id %>">View <%= subC.name %></a>
+            </button>
             <hr />
           </li>
           <% }); %>
