@@ -4,18 +4,18 @@
   <h1><%= title %></h1>
   <ol>
     <div class="subCatContainer">
-      <% _.each(topC, function(item) { %>
+      <% _.each(productsOfCat, function(product) { %>
       <li>
         <div class="subCatProducts">
-          <h4><%= item.name %></h4>
+          <h4><%= product.name %></h4>
 
           <div>
             <!-- Edit This! -->
-            <img src="/images/<%= item.image_groups[0].images[0].link %>" />
+            <img src="/images/<%= product.image_groups[0].images[0].link %>" />
             <!--  -->
-            <p><%= item.page_description %></p>
-            Price: <%= item.price %> <%= item.currency %>
-            <button><a href="/product/<%= item.id %>">More Info</a></button>
+            <p><%= product.page_description %></p>
+            Price: <%= product.price %> <%= product.currency %>
+            <button><a href="/product/<%= product.id %>">More Info</a></button>
           </div>
         </div>
       </li>

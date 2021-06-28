@@ -30,7 +30,7 @@ module.exports = async function productsOfCat(req, res) {
     _,
     title: queryCategory.name,
     items: [],
-    topC: queryCategory,
+    productsOfCat: queryCategory,
     parentCat:
       queryCategory.parent_category_id === 'root'
         ? 'Index'
