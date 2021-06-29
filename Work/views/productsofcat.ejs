@@ -1,22 +1,24 @@
 <%- include ('header.ejs') %>
 
 <div class="bodyContainer">
-  <h1><%= title %></h1>
   <ol>
     <div class="subCatContainer">
+      <h1><%= productsOfCat.primary_category_id %></h1>
       <% _.each(productsOfCat, function(product) { %>
       <li>
         <div class="subCatProducts">
-          <h4><%= product.name %></h4>
-
           <div>
             <!-- Edit This! -->
-            <img src="/images/<%= product.image_groups[0].images[0].link %>" />
+            <img
+              src="/images/<%= product.image_groups[0].images[0].link %>"
+              class="rounded float-left"
+            />
             <!--  -->
-            <p><%= product.page_description %></p>
-            Price: <%= product.price %> <%= product.currency %>
-            <button><a href="/product/<%= product.id %>">More Info</a></button>
+            <br />
           </div>
+          <h4 class="float-left"><%= product.name %></h4>
+          <%= product.price %> <%= product.currency %>
+          <button><a href="/product/<%= product.id %>">More Info</a></button>
         </div>
       </li>
       <% }); %>

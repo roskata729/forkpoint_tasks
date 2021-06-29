@@ -28,7 +28,7 @@ module.exports = async function productsOfCat(req, res) {
 
   res.render('productsofcat', {
     _,
-    title: queryCategory.name,
+    title: queryCategory.primary_category_id,
     items: [],
     productsOfCat: queryCategory,
     parentCat:

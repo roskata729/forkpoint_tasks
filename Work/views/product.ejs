@@ -1,19 +1,78 @@
 <%- include ('header.ejs') %>
 
-<div class="bodyContainer">
-  <ol>
-    <li>
+<ol>
+  <li>
+    <div
+      class="float-left d-inline col-md-60 inline row-fluid"
+      style="margin-top: 50px; width: 80%"
+    >
+      <img
+        src="/images/<%= product.image_groups[0].images[0].link %>"
+        class="rounded float-left"
+        style="margin-right: 20px; width: 60%"
+      />
+      Item No.<%= product._id %>
       <h4><%= product.page_title %></h4>
-      <p><%= product.page_description %></p>
-
-      <div>
-        <img src="/images/<%= product.image_groups[0].images[0].link %>" />
+      <p><%= product.price %> <%= product.currency %></p>
+      <p>Color:</p>
+      <div>Colors here</div>
+      <p>Size:</p>
+      <div>Sizes here</div>
+      <p>Quantity:</p>
+      <div class="d-inline-flex">
+        <i
+          class="fa fa-minus btn mx-1 bg-transparent"
+          style="color: grey"
+          aria-hidden="true"
+        ></i>
+        <input
+          type="text"
+          id="productQuantity"
+          value="1"
+          style="width: 40px; text-align: center"
+        />
+        <i
+          onclick="$('#productQuantity').val($('#productQuantity').val + 1).trigger('change');"
+          class="fa fa-plus btn bg-transparent"
+          style="color: grey"
+          aria-hidden="true"
+        ></i>
+        <button
+          class="float-left btn btn-danger mb-2 px-4"
+          style="margin-left: 70px"
+        >
+          ADD TO CART
+        </button>
       </div>
+      <p>Share</p>
+      <!-- Facebook -->
 
-      <button>Buy Now</button>
-      <p>Price: <%= product.price %> <%= product.currency %></p>
-    </li>
-  </ol>
-</div>
+      <a href="#" class="fa fa-facebook"></a>
+
+      <!-- Twitter -->
+      <a href="#" class="fa fa-twitter"></a>
+
+      <!-- Google -->
+
+      <a href="#" class="fa fa-google"></a>
+
+      <button
+        type="button"
+        class="btn btn-sm px-4 mb-2 material-tooltip-main fa fa-heart"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Add to wishlist"
+        style="margin-left: 30px"
+      ></button>
+      <span style="color: grey">Add to Wishlist</span>
+
+      <hr style="margin-top: 10px" />
+      <section>
+        <h2 style="margin-top: 50px">DESCRIPTION</h2>
+        <div><%= product.page_description %></div>
+      </section>
+    </div>
+  </li>
+</ol>
 
 <%- include ('footer.ejs') %>
