@@ -2,22 +2,30 @@
 
 <ol>
   <li>
-    <div
-      class="float-left d-inline col-md-60 inline row-fluid"
-      style="margin-top: 50px; width: 80%"
-    >
+    <div class="float-left d-inline col" style="margin-top: 20px; width: 60%">
       <img
         src="/images/<%= product.image_groups[0].images[0].link %>"
-        class="rounded float-left"
+        class="img-thumbnail rounded float-right"
         style="margin-right: 20px; width: 60%"
       />
+    </div>
+    <div class="col-lg">
       Item No.<%= product._id %>
       <h4><%= product.page_title %></h4>
       <p><%= product.price %> <%= product.currency %></p>
-      <p>Color:</p>
-      <div>Colors here</div>
-      <p>Size:</p>
-      <div>Sizes here</div>
+      <div class="d-inline">
+        <p>
+          Color: <% _.each(product.variation_attributes, function(attr) {
+          if(attr.id == 'color'){ _.each(attr.values, function(subAttr) { %> <%=
+          subAttr.name %>
+        </p>
+      </div>
+      <% }) %>
+
+      <div class="">
+        Size: <% } else if(attr.id == 'size'){ _.each(attr.values,
+        function(subAttr) { %> <%= subAttr.name %> <% }) } }); %>
+      </div>
       <p>Quantity:</p>
       <div class="d-inline-flex">
         <i
@@ -69,7 +77,7 @@
       <hr style="margin-top: 10px" />
       <section>
         <h2 style="margin-top: 50px">DESCRIPTION</h2>
-        <div><%= product.page_description %></div>
+        <div><%= product.long_description %></div>
       </section>
     </div>
   </li>

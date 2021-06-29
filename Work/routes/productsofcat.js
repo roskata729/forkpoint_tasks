@@ -13,17 +13,19 @@ const mongoUtil = require('../mongo');
 module.exports = async function productsOfCat(req, res) {
   const qId = req.params.id;
   const db = mongoUtil.getDb();
-  const category = db.collection('Products');
+  const allProducts = db.collection('Products');
+  const categories = db.collection('Categories');
 
-  const queryCategory = await category
+  const queryCategory = await allProducts
     .find({
       primary_category_id: qId,
     })
     .toArray();
+  const allCatsQuery = await categories.find({}).toArray();
   //console.log(qId);
 
   //console.log(qId);
-  console.log(queryCategory);
+  console.log(allCatsQuery);
   //console.log(queryCategory);
 
   res.render('productsofcat', {
@@ -31,6 +33,7 @@ module.exports = async function productsOfCat(req, res) {
     title: queryCategory.primary_category_id,
     items: [],
     productsOfCat: queryCategory,
+    allCats: allCatsQuery,
     parentCat:
       queryCategory.parent_category_id === 'root'
         ? 'Index'

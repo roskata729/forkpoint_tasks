@@ -1,6 +1,91 @@
 <%- include ('header.ejs') %>
+<div class="container-fluid d-inline-flex mt-6">
+<div class="row mt-4">
+  <!-- Section: Sidebar -->
+  <section class="col-3 px-1">
+    <!-- Section: Categories -->
+    <section>
+      <h5>Subcategories</h5>
+      <div class="text-muted small text-uppercase mb-5">
+         <% _.each(allCats, function(subCat) { 
+           _.each(subCat.categories, function(subSubCat) {
+            _.each(subSubCat.categories, function(category) {
+                %>
+        <p class="mb-3"><a href="/productsofcat/<%= category.id %>" 
+          class="card-link-secondary text-muted text-decoration-none"
+          ><%= category.name %></a></p>
+        <% }) }) }); %>
+        
+      </div>
+    </section>
+    <!-- Section: Categories -->
 
-<div class="bodyContainer">
+      <!-- Section: Price version 2 -->
+      <section class="mb-4">
+        <h6 class="font-weight-bold mb-3">Price</h6>
+
+        <div class="slider-price d-flex align-items-center my-4">
+          <span class="font-weight-normal small text-muted mr-2">$0</span>
+          <form class="multi-range-field w-100 mb-1">
+            <input id="multi" class="multi-range" type="range" />
+          </form>
+          <span class="font-weight-normal small text-muted ml-2">$100</span>
+        </div>
+      </section>
+      <!-- Section: Price version 2 -->
+
+      
+      
+      <!-- Section: Color -->
+    </section>
+  <!-- Section: Sidebar -->
+
+  <!--Section: Block Content-->
+  <section class="col-lg ">
+      
+    
+    <!-- Grid row -->
+      <!-- Grid column -->
+        <div class="col-13">
+          <div class="container-fluid">
+      <div class="row">
+        <!-- Card -->
+        <% _.each(productsOfCat, function(product) { %>
+          <div class="col-4">
+            <a href="/product/<%= product.id %>"><div class="view zoom overlay z-depth-2 rounded">
+              <img
+                class="img-fluid rounded float-left"
+                src="/images/<%= product.image_groups[0].images[0].link %>"
+                alt="/images/<%= product.image_groups[0].images[0].alt %>"
+              />
+            </div> </a>
+
+            <div class="text-center pt-4">
+              <h5 class="d-inline-block text-truncate" style="max-width: 240px;"><%= product.name %></h5>
+              <hr />
+              <h6 class="mb-3 float-left text-muted"><%= product.price %> <%= product.currency %></h6>
+              </button>
+            </div>
+          </div>
+          
+          
+        
+        <% }); %> 
+      </div>
+      </div>
+      </div>
+      
+        <!-- Card -->
+      <!-- Grid column -->
+    
+      
+    <!-- Grid row -->
+  </section>
+  <!--Section: Block Content-->
+</div>
+</div>
+
+<!-- <div class="bodyContainer">
   <ol>
     <div class="subCatContainer">
       <h1><%= productsOfCat.primary_category_id %></h1>
@@ -8,12 +93,10 @@
       <li>
         <div class="subCatProducts">
           <div>
-            <!-- Edit This! -->
             <img
               src="/images/<%= product.image_groups[0].images[0].link %>"
               class="rounded float-left"
             />
-            <!--  -->
             <br />
           </div>
           <h4 class="float-left"><%= product.name %></h4>
@@ -24,6 +107,6 @@
       <% }); %>
     </div>
   </ol>
-</div>
+</div> -->
 
 <%- include ('footer.ejs') %>

@@ -7382,7 +7382,10 @@ ol {
   text-align: center;
   text-decoration: none;
   margin: 5px 2px;
-  background: #0f5e9b;
+  color: white;
+}
+.fa-facebook {
+  background: #175483;
   color: white;
 }
 .fa-twitter {
