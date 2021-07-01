@@ -56,9 +56,34 @@
           outPutColors = outPutColors.filter((item, i, ar) => ar.indexOf(item) === i);
           console.log(outPutColors);
           %>
-          <div class="d-inline-flex">
-            <% outPutColors.forEach((size) => { %>
-            <div class="mr-2" onclick=""><button>  <%= size %></button> </div> <% }) %> </div>
+          <div class="">
+            <% outPutColors.forEach((color) => { %>
+            <div class="mr-2">
+            <button  onclick="hideProductByColor(this)">  <%= color %></button> </div>  <% }) %> </div>
+            <script>
+                function hideProductByColor(btnElement){
+                    //alert(btnElement);
+                    $('#productContainer').children('.productElement').each(function(i) { 
+                      //alert("Button:"+$(btnElement).html());
+                      //alert("product color: " + i + " :" + $(this).attr('productcolor'));
+                      if($(btnElement).html().trim() !== $(this).attr('productcolor').trim()) {
+                        $(this).toggle(1000);
+                        $(btnElement).toggleClass("text-danger");
+                      }
+                    });
+                }
+                function hideProductBySize(btnElement){
+                    //alert(btnElement);
+                    $('#productContainer').children('.productElement').each(function(i) { 
+                      //alert("Button:"+$(btnElement).html());
+                      //alert("product color: " + i + " :" + $(this).attr('productcolor'));
+                      if($(btnElement).html().trim() !== $(this).attr('productsize').trim()) {
+                        $(this).toggle(1000);
+                        $(btnElement).toggleClass("text-danger");
+                      }
+                    });
+                }
+            </script>
   </section>
   <!-- Section: Color -->
   <!-- Section: Size -->
@@ -81,13 +106,13 @@
           %>
           <div class="d-inline-flex">
           <% outPutSizes.forEach((size) => { %>
-          <div class="mr-2" onclick=""><button>  <%= size %></button> </div> <% }) %> </div>
+          <div class="mr-2" "><button onclick="hideProductBySize(this)">  <%= size %> </button> </div> <% }) %> </div>
 
   </section>
 
   <!-- Section: Size -->
 
-  <p class="mb-6 text-center"><button class="rounded border-1">Apply Filters</button></p>
+  <p class="mb-6 text-center"><button class="rounded border-1">Reset Filters</button></p>
 
     </section>
   <!-- Section: Sidebar -->
@@ -100,10 +125,28 @@
       <!-- Grid column -->
         <div class="col-13">
           <div class="container-fluid">
-      <div class="row">
+      <div id="productContainer" class="row">
         <!-- Card -->
-        <% _.each(productsOfCat, function(product) { %>
-          <div class="col-4">
+
+          <% _.each(productsOfCat, function(product) {
+
+            let color;
+        let size;
+        
+          _.each(product.variation_attributes, function(attr) {
+          
+            _.each(attr.values, function(subAttr) {
+            
+              if(attr.id === 'color'){ 
+              color = subAttr.name;
+              }
+              else if(attr.id == 'size'){
+              size = subAttr.name;
+              }
+
+          }) })
+                %>
+          <div productcolor="<%= color %>" productsize="<%= size %>" class="col-4 productElement">
             <a href="/product/<%= product.id %>"><div class="view zoom overlay z-depth-2 rounded">
               <img
                 class="img-fluid rounded float-left"
@@ -122,7 +165,7 @@
           
           
         
-        <% }); %> 
+        <%  }); %> 
       </div>
       </div>
       </div>
