@@ -1,0 +1,208 @@
+<%- include ('header.ejs') %>
+<div class="container-fluid d-inline-flex mt-6">
+<div class="row mt-4">
+  <!-- Section: Sidebar -->
+  <section class="col-3 px-1">
+    <!-- Section: Categories -->
+    <section>
+      <h5>Subcategories</h5>
+      <div class="text-muted small text-uppercase mb-5">
+         <% _.each(allCats, function(subCat) { 
+           %><hr><div class="mt-2 mb-2 text-dark"> <%= subCat.name %> <hr></div>  <%
+           _.each(subCat.categories, function(subSubCat) {
+            _.each(subSubCat.categories, function(category) {
+                %>
+        <p class="mb-3"><a href="/productsofcat/<%= category.id %>" 
+          class="card-link-secondary text-muted text-decoration-none"
+          ><%= category.name %></a></p>
+        <% }) }) }); %>
+        
+      </div>
+    </section>
+    <!-- Section: Categories -->
+
+      <!-- Section: Price version 2 -->
+      <section class="mb-4">
+        <h6 class="font-weight-bold mb-3">Price</h6>
+
+        <div class="slider-price d-flex align-items-center my-4">
+          <span class="font-weight-normal small text-muted mr-2">$0</span>
+          <form class="multi-range-field w-100 mb-1">
+            <input id="multi" class="multi-range" type="range" />
+          </form>
+          <span class="font-weight-normal small text-muted ml-2">$100</span>
+        </div>
+      </section>
+      <!-- Section: Price version 2 -->
+
+      
+      
+      
+  <section>
+    <p>COLOR</p>
+    <% _.each(productsOfCat, function(product) {
+      _.each(product.variation_attributes, function(attr) {
+        if(attr.id == 'color'){ _.each(attr.values, function(subAttr) {
+          outPutColors.push(subAttr.name);
+          
+      %>
+
+    
+          <% }) } 
+          
+          %> <!-- For the color -->
+          
+          <% }) });
+          outPutColors = outPutColors.filter((item, i, ar) => ar.indexOf(item) === i);
+          console.log(outPutColors);
+          %>
+          <div class="">
+            <% outPutColors.forEach((color) => { %>
+            <div class="mr-2">
+            <button  onclick="hideProductByColor(this)">  <%= color %></button> </div>  <% }) %> </div>
+            <script>
+                function hideProductByColor(btnElement){
+                    //alert(btnElement);
+                    $('#productContainer').children('.productElement').each(function(i) { 
+                      //alert("Button:"+$(btnElement).html());
+                      //alert("product color: " + i + " :" + $(this).attr('productcolor'));
+                      if($(btnElement).html().trim() !== $(this).attr('productcolor').trim()) {
+                        $(this).toggle(1000);
+                        $(btnElement).toggleClass("text-danger");
+                      }
+                    });
+                }
+                function hideProductBySize(btnElement){
+                    //alert(btnElement);
+                    $('#productContainer').children('.productElement').each(function(i) { 
+                      //alert("Button:"+$(btnElement).html());
+                      //alert("product color: " + i + " :" + $(this).attr('productcolor'));
+                      if($(btnElement).html().trim() !== $(this).attr('productsize').trim()) {
+                        $(this).toggle(1000);
+                        $(btnElement).toggleClass("text-danger");
+                      }
+                    });
+                }
+            </script>
+  </section>
+  <!-- Section: Color -->
+  <!-- Section: Size -->
+
+  <section class="mt-3 mb-2">
+    <p>SIZE</p>
+    
+      <% _.each(productsOfCat, function(product) {
+        _.each(product.variation_attributes, function(attr) {
+          if(attr.id == 'size'){ _.each(attr.values, function(subAttr) {
+            outPutSizes.push(subAttr.name);
+            
+        %>
+
+        <% }) } %> 
+          
+          <% }) });
+          outPutSizes = outPutSizes.filter((item, i, ar) => ar.indexOf(item) === i);
+          console.log(outPutSizes);
+          %>
+          <div class="d-inline-flex">
+          <% outPutSizes.forEach((size) => { %>
+          <div class="mr-2" "><button onclick="hideProductBySize(this)">  <%= size %> </button> </div> <% }) %> </div>
+
+  </section>
+
+  <!-- Section: Size -->
+
+  <p class="mb-6 text-center"><button class="rounded border-1">Reset Filters</button></p>
+
+    </section>
+  <!-- Section: Sidebar -->
+
+  <!--Section: Block Content-->
+  <section class="col-lg" id="blockItems">
+      
+    
+    <!-- Grid row -->
+      <!-- Grid column -->
+        <div class="col-13">
+          <div class="container-fluid">
+      <div id="productContainer" class="row">
+        <!-- Card -->
+
+          <% _.each(productsOfCat, function(product) {
+
+            let color;
+        let size;
+        
+          _.each(product.variation_attributes, function(attr) {
+          
+            _.each(attr.values, function(subAttr) {
+            
+              if(attr.id === 'color'){ 
+              color = subAttr.name;
+              }
+              else if(attr.id == 'size'){
+              size = subAttr.name;
+              }
+
+          }) })
+                %>
+          <div productcolor="<%= color %>" productsize="<%= size %>" class="col-4 productElement">
+            <a href="/product/<%= product.id %>"><div class="view zoom overlay z-depth-2 rounded">
+              <img
+                class="img-fluid rounded float-left"
+                src="/images/<%= product.image_groups[0].images[0].link %>"
+                alt="/images/<%= product.image_groups[0].images[0].alt %>"
+              />
+            </div> </a>
+
+            <div class="text-left pt-4">
+              <h5 class="d-inline-block text-truncate" style="max-width: 240px;"><%= product.name %></h5>
+              <hr />
+              <h6 class="mb-3 float-left text-muted"><%= product.price %> <%= product.currency %></h6>
+              </button>
+            </div>
+          </div>
+          
+          
+        
+        <%  }); %> 
+      </div>
+      </div>
+      </div>
+      
+        <!-- Card -->
+      <!-- Grid column -->
+    
+      
+      
+    <!-- Grid row -->
+  </section>
+  <!--Section: Block Content-->
+</div>
+</div>
+
+<!-- <div class="bodyContainer">
+  <ol>
+    <div class="subCatContainer">
+      <h1><%= productsOfCat.primary_category_id %></h1>
+      <% _.each(productsOfCat, function(product) { %>
+      <li>
+        <div class="subCatProducts">
+          <div>
+            <img
+              src="/images/<%= product.image_groups[0].images[0].link %>"
+              class="rounded float-left"
+            />
+            <br />
+          </div>
+          <h4 class="float-left"><%= product.name %></h4>
+          <%= product.price %> <%= product.currency %>
+          <button><a href="/product/<%= product.id %>">More Info</a></button>
+        </div>
+      </li>
+      <% }); %>
+    </div>
+  </ol>
+</div> -->
+
+<%- include ('footer.ejs') %>

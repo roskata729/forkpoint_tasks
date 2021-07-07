@@ -1,0 +1,29 @@
+<%- include ('header.ejs') %>
+
+<div class="bodyContainer">
+  <h1><%= title %></h1>
+  <ol>
+    <div class="subCatContainer">
+      <% _.each(topC, function(item) { %>
+      <li>
+        <% _.each(item.categories, function(subItem) { %> <%
+        _.each(subItem.categories, function(subSubItem) { %> <% if(subItem.id ==
+        filter) { %>
+        <div class="subCatProducts">
+          <h4><%= subSubItem.name %></h4>
+          <p><%= subSubItem.page_description %></p>
+          <% if (subSubItem.image) { %>
+          <div>
+            <img src="/images/<%= subSubItem.image %>" />
+          </div>
+
+          <% } %>
+          <a href="/productsofcat/<%= subSubItem.id %>">View Products</a>
+        </div>
+      </li>
+      <% } %> <% }); %> <% }); %> <% }); %>
+    </div>
+  </ol>
+</div>
+
+<%- include ('footer.ejs') %>
